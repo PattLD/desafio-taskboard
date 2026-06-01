@@ -1,6 +1,7 @@
 import './styles.css'
-import BarraPesquisa from '../../components/BarraPesquisa'
 import { FaSquareCheck } from "react-icons/fa6";
+import BarraPesquisa from '../../components/BarraPesquisa'
+import Grupo from '../../components/Grupo';
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
         <BarraPesquisa/>
       </div>
       <div className='container'>
+        <Grupo title={'Em Andamento'} contagem={'8'}/>
       </div>
 
     </>

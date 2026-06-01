@@ -1,5 +1,5 @@
 .header {
-    background: #01191b;
+    background: #010f1b;
     padding: 0.5rem;
     display: flex;
     align-items: center;
@@ -7,4 +7,9 @@
 
 .title {
     margin: 0.4rem;
+}
+
+.container {
+    margin: 2%;
+    padding: 1%;
 }

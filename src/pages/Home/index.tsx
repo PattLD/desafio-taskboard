@@ -12,7 +12,7 @@ function Home() {
         <BarraPesquisa/>
       </div>
       <div className='container'>
-        <Grupo title={'Em Andamento'} contagem={'8'}/>
+        <Grupo titulo={'Em Andamento'} contagem={8}/>
       </div>
 
     </>

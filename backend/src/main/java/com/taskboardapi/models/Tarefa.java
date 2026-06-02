@@ -1,12 +1,14 @@
 package com.taskboardapi.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "tarefas")
 @Entity(name = "tarefas")
 public class Tarefa {
@@ -16,7 +18,7 @@ public class Tarefa {
     private boolean completado = false;
     private LocalDate dataPrazo;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupo_id")
     private Grupo grupo;
 }

@@ -1,14 +1,15 @@
 package com.taskboardapi.models;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "grupos")
 @Entity(name = "grupos")
 public class Grupo {

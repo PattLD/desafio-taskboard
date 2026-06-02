@@ -17,7 +17,7 @@ public class GrupoServicesImpl implements GrupoServices {
     }
 
     @Override
-    public List<GrupoDto> findAllGrupos() {
+    public List<GrupoDto> findAll() {
         List<Grupo> grupos = grupoRepository.findAll();
         return grupos.stream().map((grupo) -> mapToGrupoDto(grupo)).collect(Collectors.toList());
     }

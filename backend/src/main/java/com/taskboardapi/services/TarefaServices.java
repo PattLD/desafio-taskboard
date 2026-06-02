@@ -4,5 +4,5 @@ import com.taskboardapi.dto.TarefaDto;
 import java.util.List;
 
 public interface TarefaServices {
-    List<TarefaDto> findAllTarefas();
+    List<TarefaDto> findAll();
 }

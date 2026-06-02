@@ -4,5 +4,5 @@ import com.taskboardapi.dto.GrupoDto;
 import java.util.List;
 
 public interface GrupoServices {
-    List<GrupoDto> findAllGrupos();
+    List<GrupoDto> findAll();
 }

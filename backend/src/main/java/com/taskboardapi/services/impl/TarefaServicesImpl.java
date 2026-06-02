@@ -20,7 +20,7 @@ public class TarefaServicesImpl implements TarefaServices {
     }
 
     @Override
-    public List<TarefaDto> findAllTarefas() {
+    public List<TarefaDto> findAll() {
         List<Tarefa> tarefas = tarefaRepository.findAll();
         return tarefas.stream().map((tarefa) -> mapToTarefaDto(tarefa)).collect(Collectors.toList());
     }

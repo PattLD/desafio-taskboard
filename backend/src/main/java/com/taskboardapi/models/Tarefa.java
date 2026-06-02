@@ -16,7 +16,7 @@ public class Tarefa {
     private boolean completado = false;
     private LocalDate dataPrazo;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grupo_id")
     private Grupo grupo;
 }

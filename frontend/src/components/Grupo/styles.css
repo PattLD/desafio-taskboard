@@ -1,0 +1,48 @@
+.grupo-container {
+    width: 15rem;
+    padding: 1.5%;
+    background: #bbc5d3;
+    border-radius: 0.5rem;
+    align-items: center;
+
+}
+
+.grupo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.grupo-titulo {
+    font-size: 1rem;
+    color: #0d1a36;
+}
+
+.grupo-contagem {
+    background: #9caab4;
+    width: 14px;
+    height:13px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 5px 10px;
+}
+
+.card-botao {
+    border: transparent;
+    background: transparent;
+    font-weight: bold;
+    color: #424a5a;
+    margin-top: 5%;
+}
+
+.card-botao:hover {
+    color: #919194;
+}
+
+.grupo-card {
+    display: flex;
+}

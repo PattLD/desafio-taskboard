@@ -1,0 +1,36 @@
+.card-container {
+    min-height: 10vh;
+    width: 100%;
+    background-color: whitesmoke;
+    margin-bottom: 6%;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.card-footer {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.tarefa-texto {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.data {
+    display: flex; 
+    margin-left: 0.6rem;
+    background: #8080803b;
+    align-items: center;
+    padding: 2% 5%;
+    border-radius: 5px;
+    font-size: small;
+    font-weight: bold;
+    gap: 5px;
+    color: #26375c;
+}

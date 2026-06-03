@@ -29,4 +29,10 @@ public class TarefaController {
         Tarefa novaTarefa = tarefaServices.save(tarefa);
         return ResponseEntity.ok(novaTarefa);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Tarefa> update(@PathVariable Long id, @RequestBody Tarefa tarefa) {
+        tarefa.setId(id);
+        return ResponseEntity.ok(tarefaServices.update(id, tarefa));
+    }
 }

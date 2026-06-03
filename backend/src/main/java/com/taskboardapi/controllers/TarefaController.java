@@ -41,4 +41,10 @@ public class TarefaController {
         tarefaServices.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/pesquisa")
+    public ResponseEntity<List<Tarefa>> findByTitulo(@RequestParam String titulo) {
+        List<Tarefa> tarefas = tarefaServices.findByTitulo(titulo);
+        return ResponseEntity.ok(tarefas);
+    }
 }

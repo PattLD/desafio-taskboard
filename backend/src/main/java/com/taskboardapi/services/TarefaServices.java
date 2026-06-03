@@ -30,4 +30,8 @@ public class TarefaServices {
     public void deleteById(Long id) {
         tarefaRepository.deleteById(id);
     }
+
+    public List<Tarefa> findByTitulo(String titulo) {
+        return tarefaRepository.findByTituloContainingIgnoreCase(titulo);
+    }
 }

@@ -20,4 +20,9 @@ public class GrupoServices {
     public Grupo save(Grupo grupo) {
         return grupoRepository.save(grupo);
     }
+
+    public Grupo update(Long id, Grupo grupo) {
+        return grupoRepository.save(grupo);
+    }
+
 }

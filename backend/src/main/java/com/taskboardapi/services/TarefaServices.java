@@ -26,4 +26,8 @@ public class TarefaServices {
     public Tarefa update(Long id, Tarefa tarefa) {
         return tarefaRepository.save(tarefa);
     }
+
+    public void deleteById(Long id) {
+        tarefaRepository.deleteById(id);
+    }
 }

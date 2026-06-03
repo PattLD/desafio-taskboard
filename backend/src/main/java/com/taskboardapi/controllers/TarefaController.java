@@ -1,12 +1,10 @@
 package com.taskboardapi.controllers;
 
-import com.taskboardapi.dto.TarefaDto;
+import com.taskboardapi.models.Tarefa;
 import com.taskboardapi.services.TarefaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +19,14 @@ public class TarefaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TarefaDto>> findAll() {
-        List<TarefaDto> tarefaDtos = tarefaServices.findAll();
+    public ResponseEntity<List<Tarefa>> findAll() {
+        List<Tarefa> tarefaDtos = tarefaServices.findAll();
         return ResponseEntity.ok(tarefaDtos);
+    }
+
+    @PostMapping
+    public ResponseEntity<Tarefa> save(@RequestBody Tarefa tarefa) {
+        Tarefa novaTarefa = tarefaServices.save(tarefa);
+        return ResponseEntity.ok(novaTarefa);
     }
 }

@@ -1,8 +1,25 @@
 package com.taskboardapi.services;
 
-import com.taskboardapi.dto.TarefaDto;
+import com.taskboardapi.models.Tarefa;
+import com.taskboardapi.repositories.TarefaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
-public interface TarefaServices {
-    List<TarefaDto> findAll();
+@Service
+public class TarefaServices {
+    private TarefaRepository tarefaRepository;
+
+    @Autowired
+    public TarefaServices(TarefaRepository tarefaRepository) {
+        this.tarefaRepository = tarefaRepository;
+    }
+
+    public List<Tarefa> findAll() {
+        return tarefaRepository.findAll();
+    }
+
+    public Tarefa save(Tarefa tarefa) {
+        return tarefaRepository.save(tarefa);
+    }
 }

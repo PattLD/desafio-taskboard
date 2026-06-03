@@ -2,8 +2,20 @@ import './styles.css'
 import { FaSquareCheck } from "react-icons/fa6";
 import BarraPesquisa from '../../components/BarraPesquisa'
 import Grupo from '../../components/Grupo';
+import { useGrupoStore } from '../../store/grupoStore';
+import { useEffect } from 'react';
 
 function Home() {
+  const {
+    grupos, 
+    carregando, 
+    listarGrupos
+  } = useGrupoStore();
+
+  useEffect(() => {
+    listarGrupos();
+  }, [listarGrupos]);
+
   return (
     <>
       <div className='header'>
@@ -12,7 +24,11 @@ function Home() {
         <BarraPesquisa/>
       </div>
       <div className='container'>
-        <Grupo titulo={'Em Andamento'} contagem={8}/>
+        {!carregando && grupos.map((grupo) => (
+            <div key={grupo.id}> 
+              <Grupo grupo={grupo} /> 
+            </div>
+        ))}
       </div>
 
     </>

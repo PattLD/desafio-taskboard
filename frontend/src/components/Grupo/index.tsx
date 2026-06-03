@@ -1,12 +1,16 @@
 import './styles.css'
 import Card from '../Card'
+import type { GrupoData } from '../../interface/GrupoData';
+import { useState } from 'react';
 
 interface GrupoProps {
-    titulo: string,
-    contagem: number
+    grupo: GrupoData;
 }
 
-function Grupo({titulo, contagem} : GrupoProps) {
+function Grupo({grupo} : GrupoProps) {
+    const contagem = 6
+    const [titulo, setTitulo] = useState(grupo?.titulo ?? "");
+
   return (
     <div className='grupo-container'>
         <div className='grupo-header'>

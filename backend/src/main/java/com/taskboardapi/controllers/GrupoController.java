@@ -37,5 +37,9 @@ public class GrupoController {
         return ResponseEntity.ok(grupoServices.update(id, grupo));
     }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        grupoServices.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

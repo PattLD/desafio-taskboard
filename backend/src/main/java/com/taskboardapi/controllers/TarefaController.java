@@ -35,4 +35,10 @@ public class TarefaController {
         tarefa.setId(id);
         return ResponseEntity.ok(tarefaServices.update(id, tarefa));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        tarefaServices.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }

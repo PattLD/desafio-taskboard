@@ -25,4 +25,8 @@ public class GrupoServices {
         return grupoRepository.save(grupo);
     }
 
+    public void deleteById(Long id) {
+        grupoRepository.deleteById(id);
+    }
+
 }

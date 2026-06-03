@@ -1,8 +1,23 @@
 package com.taskboardapi.services;
+import com.taskboardapi.models.Grupo;
+import com.taskboardapi.repositories.GrupoRepository;
+import org.springframework.stereotype.Service;
 
-import com.taskboardapi.dto.GrupoDto;
 import java.util.List;
 
-public interface GrupoServices {
-    List<GrupoDto> findAll();
+@Service
+public class GrupoServices {
+    private GrupoRepository grupoRepository;
+
+    public GrupoServices (GrupoRepository grupoRepository) {
+        this.grupoRepository = grupoRepository;
+    }
+
+    public List<Grupo> findAll() {
+        return grupoRepository.findAll();
+    }
+
+    public Grupo save(Grupo grupo) {
+        return grupoRepository.save(grupo);
+    }
 }

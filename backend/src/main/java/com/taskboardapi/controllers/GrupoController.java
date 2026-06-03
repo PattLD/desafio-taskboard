@@ -1,12 +1,11 @@
 package com.taskboardapi.controllers;
 
-import com.taskboardapi.dto.GrupoDto;
+import com.taskboardapi.models.Grupo;
+import com.taskboardapi.models.Tarefa;
 import com.taskboardapi.services.GrupoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +20,14 @@ public class GrupoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<GrupoDto>> findAll() {
-        List<GrupoDto> grupoDtos = grupoServices.findAll();
-        return ResponseEntity.ok(grupoDtos);
+    public ResponseEntity<List<Grupo>> findAll() {
+        List<Grupo> grupo = grupoServices.findAll();
+        return ResponseEntity.ok(grupo);
+    }
+
+    @PostMapping
+    public ResponseEntity<Grupo> save(@RequestBody Grupo grupo) {
+        Grupo novoGrupo = grupoServices.save(grupo);
+        return ResponseEntity.ok(novoGrupo);
     }
 }

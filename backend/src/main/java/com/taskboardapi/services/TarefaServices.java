@@ -22,4 +22,8 @@ public class TarefaServices {
     public Tarefa save(Tarefa tarefa) {
         return tarefaRepository.save(tarefa);
     }
+
+    public Tarefa update(Long id, Tarefa tarefa) {
+        return tarefaRepository.save(tarefa);
+    }
 }

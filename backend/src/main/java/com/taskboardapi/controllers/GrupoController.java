@@ -30,4 +30,12 @@ public class GrupoController {
         Grupo novoGrupo = grupoServices.save(grupo);
         return ResponseEntity.ok(novoGrupo);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Grupo> update(@PathVariable Long id, @RequestBody Grupo grupo) {
+        grupo.setId(id);
+        return ResponseEntity.ok(grupoServices.update(id, grupo));
+    }
+
+
 }

@@ -1,7 +1,7 @@
 import "./styles.css";
 import type { GrupoData } from "../../interface/GrupoData";
 import { useState } from "react";
-import { useGrupoStore } from "../../store/grupoStore";
+import { useGrupoStore } from "../../store/appStore";
 import { ListaCards } from "../ListaCards";
 import TarefaModal from "../TarefaModal";
 
@@ -16,6 +16,9 @@ function Grupo({ grupo }: GrupoProps) {
   const updateGrupo = useGrupoStore((state) => state.updateGrupo);
   const [editandoTitulo, setEditandoTitulo] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [dataValue, setDataValue] = useState("");
+  const [novaTarefa, setnovaTarefa] = useState("");
+  const { createTarefa } = useGrupoStore();
 
   const handleUpdateTitulo = async () => {
     if (!titulo.trim()) {
@@ -28,6 +31,14 @@ function Grupo({ grupo }: GrupoProps) {
     }
     setEditandoTitulo(false);
     await updateGrupo(grupo.id, titulo);
+  };
+
+  const handleAdd = async () => {
+    if (!novaTarefa.trim() || !dataValue.trim()) return;
+    await createTarefa(grupo.id, novaTarefa, dataValue);
+    setnovaTarefa("");
+    setDataValue("");
+    setOpenModal(false);
   };
 
   return (
@@ -69,7 +80,15 @@ function Grupo({ grupo }: GrupoProps) {
       <button className="card-botao" onClick={() => setOpenModal(true)}>
         + Novo Card
       </button>
-      <TarefaModal isOpen={openModal} onClose={() => setOpenModal(false)} />
+      <TarefaModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+        value={novaTarefa}
+        setValue={setnovaTarefa}
+        dateValue={dataValue}
+        setDateValue={setDataValue}
+        onSave={handleAdd}
+      />
     </div>
   );
 }

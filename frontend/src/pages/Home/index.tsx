@@ -2,7 +2,7 @@ import "./styles.css";
 import { FaSquareCheck } from "react-icons/fa6";
 import BarraPesquisa from "../../components/BarraPesquisa";
 import Grupo from "../../components/Grupo";
-import { useGrupoStore } from "../../store/grupoStore";
+import { useGrupoStore } from "../../store/appStore";
 import { useEffect } from "react";
 import BotaoGrupo from "../../components/BotaoGrupo";
 

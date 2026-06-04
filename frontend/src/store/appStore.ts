@@ -2,9 +2,9 @@ import type { GrupoData } from "../interface/GrupoData";
 import { create } from "zustand";
 import { grupoApi } from "../services/grupoApi";
 import { tarefaApi } from "../services/tarefaApi";
-import { addTarefaEmGrupo } from "../helper/tarefaHelpers";
+import { addGrupo, addTarefaEmGrupo } from "../helper/appHelpers";
 
-export interface GrupoStore {
+export interface AppStore {
   grupos: GrupoData[];
   carregando: boolean;
   listarGrupos: () => Promise<void>;
@@ -18,11 +18,7 @@ export interface GrupoStore {
   ) => Promise<void>;
 }
 
-export function addGrupo(grupos: GrupoData[], grupo: GrupoData): GrupoData[] {
-  return [...grupos, grupo];
-}
-
-export const useGrupoStore = create<GrupoStore>((set, get) => ({
+export const useGrupoStore = create<AppStore>((set, get) => ({
   grupos: [],
   carregando: false,
 

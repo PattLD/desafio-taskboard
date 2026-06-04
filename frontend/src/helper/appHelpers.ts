@@ -10,3 +10,7 @@ export function addTarefaEmGrupo(
     g.id === grupoId ? { ...g, tarefas: [...(g.tarefas || []), tarefa] } : g,
   );
 }
+
+export function addGrupo(grupos: GrupoData[], grupo: GrupoData): GrupoData[] {
+  return [...grupos, grupo];
+}

@@ -15,6 +15,10 @@ export const grupoApi = {
     const response = await api.post<GrupoData>("/grupos", { titulo });
     return response.data;
   },
+
+  delete: async (grupoId: string): Promise<void> => {
+    await api.delete(`/grupos/${grupoId}`);
+  },
 };
 
 export default {

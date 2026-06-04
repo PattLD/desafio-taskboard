@@ -2,6 +2,7 @@ import "./styles.css";
 import type { GrupoData } from "../../interface/GrupoData";
 import { useState } from "react";
 import { useGrupoStore } from "../../store/grupoStore";
+import { ListaCards } from "../ListaCards";
 
 interface GrupoProps {
   grupo: GrupoData;
@@ -60,7 +61,9 @@ function Grupo({ grupo }: GrupoProps) {
           <p>{contagem}</p>
         </div>
       </div>
-      <div className="grupo-cards"></div>
+      <div className="grupo-cards">
+        <ListaCards grupoId={grupo.id} tarefas={grupo.tarefas || []} />
+      </div>
       <button className="card-botao">+ Novo Card</button>
     </div>
   );

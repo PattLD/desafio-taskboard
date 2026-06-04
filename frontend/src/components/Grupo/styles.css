@@ -1,46 +1,82 @@
 .grupo-container {
-    width: 15rem;
-    padding: 1rem;
-    background: #bbc5d3;
-    border-radius: 0.5rem;
+  position: relative;
+  width: 15rem;
+  padding: 1.1rem 1.5rem;
+  background: #bbc5d3;
+  border-radius: 0.5rem;
 }
 
 .grupo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5%;
 }
 
 .grupo-titulo {
-    font-size: 1rem;
-    color: #0d1a36;
+  font-size: 1rem;
+  color: #0d1a36;
+}
+
+.grupo-titulo:hover {
+  cursor: pointer;
+  color: #314369;
 }
 
 .grupo-contagem {
-    background: #9caab4;
-    width: 14px;
-    height:13px;
-    font-size: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1rem;
-    padding: 5px 10px;
+  background: #9caab4;
+  width: 14px;
+  height: 13px;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 5px 10px;
+  user-select: none;
 }
 
 .card-botao {
-    border: transparent;
-    background: transparent;
-    font-weight: bold;
-    color: #424a5a;
-    margin-top: 5%;
+  border: transparent;
+  background: transparent;
+  font-weight: bold;
+  color: #424a5a;
+  margin-top: 5%;
 }
 
 .card-botao:hover {
-    color: #919194;
+  color: #919194;
 }
 
 .grupo-card {
-    display: flex;
+  display: flex;
+}
+
+.grupo-deletar-botao {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  background: transparent;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: lighter;
+  color: #424a5a;
+  display: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.grupo-container:hover .grupo-deletar-botao {
+  display: block;
+}
+
+.input-titulo:focus {
+  background: #ccd7e6;
+  outline: none;
+  width: 10rem;
+  height: 2rem;
+  font-size: 1rem;
+  border: 1px solid #424a5a;
+  font-weight: bold;
+  color: #0d1a36;
 }

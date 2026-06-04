@@ -7,6 +7,8 @@ export interface GrupoStore {
   carregando: boolean;
   listarGrupos: () => Promise<void>;
   createGrupo: (titulo: string) => Promise<void>;
+  deleteGrupo: (id: string) => Promise<void>;
+  updateGrupo: (id: string, titulo: string) => Promise<void>;
 }
 
 export function addGrupo(grupos: GrupoData[], grupo: GrupoData): GrupoData[] {
@@ -46,6 +48,30 @@ export const useGrupoStore = create<GrupoStore>((set, get) => ({
         grupos: state.grupos.filter((g) => g.id !== tempId),
       }));
       console.error("Houve um erro na criação do grupo:", error);
+      throw error;
+    }
+  },
+
+  deleteGrupo: async (grupoId: string) => {
+    try {
+      set((state) => ({
+        grupos: state.grupos.filter((g) => g.id !== grupoId),
+      }));
+      await grupoApi.delete(grupoId);
+    } catch (error) {
+      console.error("Houve um erros ao deletar grupo:", error);
+      throw error;
+    }
+  },
+
+  updateGrupo: async (grupoId: string, titulo: string) => {
+    try {
+      const atualizado = await grupoApi.update(grupoId, titulo);
+      set((state) => ({
+        grupos: state.grupos.map((g) => (g.id === grupoId ? atualizado : g)),
+      }));
+    } catch (error) {
+      console.error("Houve um erro ao atualizar grupo:", error);
       throw error;
     }
   },

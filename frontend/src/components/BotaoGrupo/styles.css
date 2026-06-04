@@ -1,0 +1,22 @@
+.botao-container{
+    min-height: 40px;
+    width: 40px;
+    
+}
+
+.btn-novo-grupo{
+    height: 6vh;
+    width: 15rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    background: #042d47;
+    border: 1px dashed rgba(126, 125, 125, 0.499);
+    padding-left: 1rem;    
+    color: aliceblue;
+    font-family: sans-serif;
+}
+.btn-novo-grupo:hover{
+    background: #053753;
+}

@@ -4,6 +4,7 @@ import BarraPesquisa from '../../components/BarraPesquisa'
 import Grupo from '../../components/Grupo';
 import { useGrupoStore } from '../../store/grupoStore';
 import { useEffect } from 'react';
+import BotaoGrupo from '../../components/BotaoGrupo';
 
 function Home() {
   const {
@@ -30,6 +31,7 @@ function Home() {
                 <Grupo grupo={grupo} /> 
               </div>
           ))}
+          <BotaoGrupo/>
         </div>
       </div>
 

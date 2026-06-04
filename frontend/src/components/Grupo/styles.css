@@ -18,6 +18,11 @@
   color: #0d1a36;
 }
 
+.grupo-titulo:hover {
+  cursor: pointer;
+  color: #314369;
+}
+
 .grupo-contagem {
   background: #9caab4;
   width: 14px;
@@ -28,6 +33,7 @@
   align-items: center;
   border-radius: 1rem;
   padding: 5px 10px;
+  user-select: none;
 }
 
 .card-botao {
@@ -62,4 +68,15 @@
 
 .grupo-container:hover .grupo-deletar-botao {
   display: block;
+}
+
+.input-titulo:focus {
+  background: #ccd7e6;
+  outline: none;
+  width: 10rem;
+  height: 2rem;
+  font-size: 1rem;
+  border: 1px solid #424a5a;
+  font-weight: bold;
+  color: #0d1a36;
 }

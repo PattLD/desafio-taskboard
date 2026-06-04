@@ -19,6 +19,13 @@ export const grupoApi = {
   delete: async (grupoId: string): Promise<void> => {
     await api.delete(`/grupos/${grupoId}`);
   },
+
+  update: async (id: string, titulo: string): Promise<GrupoData> => {
+    const response = await api.patch<GrupoData>(`/grupos/${id}/titulo`, {
+      titulo,
+    });
+    return response.data;
+  },
 };
 
 export default {

@@ -11,6 +11,21 @@ function Grupo({ grupo }: GrupoProps) {
   const contagem = 6;
   const [titulo, setTitulo] = useState(grupo?.titulo ?? "");
   const deleteGrupo = useGrupoStore((state) => state.deleteGrupo);
+  const updateGrupo = useGrupoStore((state) => state.updateGrupo);
+  const [editandoTitulo, setEditandoTitulo] = useState(false);
+
+  const handleUpdateTitulo = async () => {
+    if (!titulo.trim()) {
+      setTitulo(grupo.titulo);
+      setEditandoTitulo(false);
+      return;
+    } else if (titulo.trim() == grupo.titulo) {
+      setEditandoTitulo(false);
+      return;
+    }
+    setEditandoTitulo(false);
+    await updateGrupo(grupo.id, titulo);
+  };
 
   return (
     <div className="grupo-container">
@@ -23,7 +38,24 @@ function Grupo({ grupo }: GrupoProps) {
       </button>
 
       <div className="grupo-header">
-        <h2 className="grupo-titulo">{titulo}</h2>
+        {editandoTitulo ? (
+          <input
+            className="input-titulo"
+            type="text"
+            autoFocus
+            value={titulo}
+            onChange={(e) => setTitulo(e.target.value)}
+            onBlur={handleUpdateTitulo}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleUpdateTitulo();
+              if (e.key === "Escape") setEditandoTitulo(false);
+            }}
+          />
+        ) : (
+          <h2 onClick={() => setEditandoTitulo(true)} className="grupo-titulo">
+            {titulo}
+          </h2>
+        )}
         <div className="grupo-contagem">
           <p>{contagem}</p>
         </div>

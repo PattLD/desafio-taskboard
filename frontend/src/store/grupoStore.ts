@@ -8,6 +8,7 @@ export interface GrupoStore {
   listarGrupos: () => Promise<void>;
   createGrupo: (titulo: string) => Promise<void>;
   deleteGrupo: (id: string) => Promise<void>;
+  updateGrupo: (id: string, titulo: string) => Promise<void>;
 }
 
 export function addGrupo(grupos: GrupoData[], grupo: GrupoData): GrupoData[] {
@@ -59,6 +60,18 @@ export const useGrupoStore = create<GrupoStore>((set, get) => ({
       await grupoApi.delete(grupoId);
     } catch (error) {
       console.error("Houve um erros ao deletar grupo:", error);
+      throw error;
+    }
+  },
+
+  updateGrupo: async (grupoId: string, titulo: string) => {
+    try {
+      const atualizado = await grupoApi.update(grupoId, titulo);
+      set((state) => ({
+        grupos: state.grupos.map((g) => (g.id === grupoId ? atualizado : g)),
+      }));
+    } catch (error) {
+      console.error("Houve um erro ao atualizar grupo:", error);
       throw error;
     }
   },

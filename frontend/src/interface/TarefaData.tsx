@@ -1,4 +1,4 @@
-export interface CardData {
+export interface TarefaData {
   id: string;
   titulo: string;
   completado: boolean;

@@ -1,6 +1,6 @@
 import type { GrupoData } from "../interface/GrupoData";
 import { create } from "zustand";
-import { grupoApi } from "../services/api";
+import { grupoApi } from "../services/grupoApi";
 
 export interface GrupoStore {
   grupos: GrupoData[];

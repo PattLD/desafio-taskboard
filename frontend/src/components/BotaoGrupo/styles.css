@@ -1,22 +1,33 @@
-.botao-container{
-    min-height: 40px;
-    width: 40px;
-    
+.botao-container {
+  min-height: 40px;
+  width: 40px;
 }
 
-.btn-novo-grupo{
-    height: 6vh;
-    width: 15rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
-    background: #042d47;
-    border: 1px dashed rgba(126, 125, 125, 0.499);
-    padding-left: 1rem;    
-    color: aliceblue;
-    font-family: sans-serif;
+.btn-novo-grupo {
+  height: 6vh;
+  width: 15rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  background: #042d47;
+  border: 1px dashed #7e7d7d7f;
+  padding-left: 1rem;
+  color: aliceblue;
 }
-.btn-novo-grupo:hover{
-    background: #053753;
+.btn-novo-grupo:hover {
+  background: #053753;
+}
+
+.input-novo-grupo:focus {
+  height: 6vh;
+  width: 15rem;
+  border-radius: 10px;
+  outline: none;
+  /* display: flex; */
+  /* justify-content: baseline; */
+  /* align-items: center; */
+  background: #dfe2e7;
+  border: 1px solid #042d47;
+  padding-left: 1rem;
 }

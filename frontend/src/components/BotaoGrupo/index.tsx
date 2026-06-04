@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./styles.css";
-import { useGrupoStore } from "../../store/grupoStore";
+import { useGrupoStore } from "../../store/appStore";
 
 function BotaoGrupo({}) {
   const [novoGrupoTitulo, setNovoGrupoTitulo] = useState("");

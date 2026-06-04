@@ -1,6 +1,8 @@
 import type { GrupoData } from "../interface/GrupoData";
 import { create } from "zustand";
 import { grupoApi } from "../services/grupoApi";
+import { tarefaApi } from "../services/tarefaApi";
+import { addTarefaEmGrupo } from "../helper/tarefaHelpers";
 
 export interface GrupoStore {
   grupos: GrupoData[];
@@ -9,6 +11,11 @@ export interface GrupoStore {
   createGrupo: (titulo: string) => Promise<void>;
   deleteGrupo: (id: string) => Promise<void>;
   updateGrupo: (id: string, titulo: string) => Promise<void>;
+  createTarefa: (
+    grupoId: string,
+    titulo: string,
+    dataPrazo: string,
+  ) => Promise<void>;
 }
 
 export function addGrupo(grupos: GrupoData[], grupo: GrupoData): GrupoData[] {
@@ -72,6 +79,25 @@ export const useGrupoStore = create<GrupoStore>((set, get) => ({
       }));
     } catch (error) {
       console.error("Houve um erro ao atualizar grupo:", error);
+      throw error;
+    }
+  },
+
+  // tarefas endpoint
+
+  createTarefa: async (grupoId: string, titulo: string, dataPrazo: string) => {
+    try {
+      const novaTarefa = await tarefaApi.create(grupoId, titulo, dataPrazo);
+
+      const tarefaCompletada = {
+        ...novaTarefa,
+        completado: novaTarefa.completado ?? false,
+      };
+      set((state) => ({
+        grupos: addTarefaEmGrupo(state.grupos, grupoId, tarefaCompletada),
+      }));
+    } catch (error) {
+      console.error("Erro ao criar atividade:", error);
       throw error;
     }
   },

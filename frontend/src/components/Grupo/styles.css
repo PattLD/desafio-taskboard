@@ -1,10 +1,8 @@
 .grupo-container {
     width: 15rem;
-    padding: 1.5%;
+    padding: 1rem;
     background: #bbc5d3;
     border-radius: 0.5rem;
-    align-items: center;
-
 }
 
 .grupo-header {

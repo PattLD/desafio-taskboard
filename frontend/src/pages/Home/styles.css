@@ -13,3 +13,13 @@
     margin: 2%;
     padding: 1%;
 }
+
+.lista-grupos {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+}

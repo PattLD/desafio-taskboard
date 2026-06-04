@@ -20,8 +20,7 @@ function Grupo({grupo} : GrupoProps) {
             </div>   
         </div>
         <div className='grupo-cards'>
-            <Card tarefa='Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse blanditiis ducimus beatae cum, odio at iusto exercitationem nesciunt modi, architecto distinctio voluptatem dicta aliquam nam. Quae illum voluptatem quia incidunt.' prazo='12/06'/>
-            <Card tarefa='Fazer botão grupo' prazo='23/10'/>
+            
         </div>
         <button className='card-botao'>+ Novo Card</button>
 

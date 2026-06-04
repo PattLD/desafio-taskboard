@@ -24,11 +24,13 @@ function Home() {
         <BarraPesquisa/>
       </div>
       <div className='container'>
-        {!carregando && grupos.map((grupo) => (
-            <div key={grupo.id}> 
-              <Grupo grupo={grupo} /> 
-            </div>
-        ))}
+        <div className='lista-grupos'>
+          {!carregando && grupos.map((grupo) => (
+              <div key={grupo.id}> 
+                <Grupo grupo={grupo} /> 
+              </div>
+          ))}
+        </div>
       </div>
 
     </>

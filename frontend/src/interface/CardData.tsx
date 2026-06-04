@@ -1,6 +1,6 @@
-export interface CardData{
-    id: number,
-    titulo: string,
-    completado: boolean,
-    dataPrazo: string
+export interface CardData {
+  id: string;
+  titulo: string;
+  completado: boolean;
+  dataPrazo: string;
 }

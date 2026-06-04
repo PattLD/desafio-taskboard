@@ -1,25 +1,27 @@
 .header {
-    background: #010f1b;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
+  width: 100%;
+  background: #010f1b;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
 }
 
 .title {
-    margin: 0.4rem;
+  margin: 0.4rem;
 }
 
 .container {
-    margin: 2%;
-    padding: 1%;
+  margin: 2%;
+  padding: 1%;
 }
 
 .lista-grupos {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
 }

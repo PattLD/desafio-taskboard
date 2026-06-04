@@ -1,4 +1,4 @@
-export interface GrupoData{
-    id: number,
-    titulo: string
+export interface GrupoData {
+  id: string;
+  titulo: string;
 }

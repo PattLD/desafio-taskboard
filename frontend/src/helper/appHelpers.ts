@@ -14,3 +14,18 @@ export function addTarefaEmGrupo(
 export function addGrupo(grupos: GrupoData[], grupo: GrupoData): GrupoData[] {
   return [...grupos, grupo];
 }
+
+export function updateTarefaEmGrupo(
+  grupos: GrupoData[],
+  grupoId: string,
+  updated: TarefaData,
+): GrupoData[] {
+  return grupos.map((g) =>
+    g.id === grupoId
+      ? {
+          ...g,
+          tarefas: g.tarefas.map((t) => (t.id === updated.id ? updated : t)),
+        }
+      : g,
+  );
+}

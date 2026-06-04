@@ -3,6 +3,7 @@ import type { GrupoData } from "../../interface/GrupoData";
 import { useState } from "react";
 import { useGrupoStore } from "../../store/grupoStore";
 import { ListaCards } from "../ListaCards";
+import TarefaModal from "../TarefaModal";
 
 interface GrupoProps {
   grupo: GrupoData;
@@ -14,6 +15,7 @@ function Grupo({ grupo }: GrupoProps) {
   const deleteGrupo = useGrupoStore((state) => state.deleteGrupo);
   const updateGrupo = useGrupoStore((state) => state.updateGrupo);
   const [editandoTitulo, setEditandoTitulo] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const handleUpdateTitulo = async () => {
     if (!titulo.trim()) {
@@ -64,7 +66,10 @@ function Grupo({ grupo }: GrupoProps) {
       <div className="grupo-cards">
         <ListaCards grupoId={grupo.id} tarefas={grupo.tarefas || []} />
       </div>
-      <button className="card-botao">+ Novo Card</button>
+      <button className="card-botao" onClick={() => setOpenModal(true)}>
+        + Novo Card
+      </button>
+      <TarefaModal isOpen={openModal} onClose={() => setOpenModal(false)} />
     </div>
   );
 }

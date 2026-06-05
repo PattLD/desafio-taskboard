@@ -27,13 +27,16 @@ public class TarefaServices {
     }
 
     public Tarefa save(TarefaDto dto) {
-        Grupo grupo = grupoRepository.findById(dto.grupoId()).orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
-        Tarefa tarefa = Tarefa.builder().titulo(dto.titulo()).completado(dto.completado()).dataPrazo(LocalDate.parse(dto.dataPrazo())).grupo(grupo).build();
+        Grupo grupo = grupoRepository.findById(dto.grupoId())
+                .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
+        Tarefa tarefa = Tarefa.builder().titulo(dto.titulo()).completado(dto.completado())
+                .dataPrazo(LocalDate.parse(dto.dataPrazo())).grupo(grupo).build();
         return tarefaRepository.save(tarefa);
     }
 
     public Tarefa update(Long id, TarefaDto dto) {
-        Grupo grupo = grupoRepository.findById(dto.grupoId()).orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
+        Grupo grupo = grupoRepository.findById(dto.grupoId())
+                .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
         Tarefa tarefa = Tarefa.builder()
                 .id(id)
                 .titulo(dto.titulo())
@@ -50,5 +53,14 @@ public class TarefaServices {
 
     public List<Tarefa> findByTitulo(String titulo) {
         return tarefaRepository.findByTituloContainingIgnoreCase(titulo);
+    }
+
+    public Tarefa moveTarefaEmGrupo(Long tarefaId, Long novoGrupoId) {
+        Tarefa tarefa = tarefaRepository.findById(tarefaId)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
+        Grupo grupo = grupoRepository.findById(novoGrupoId)
+                .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
+        tarefa.setGrupo(grupo);
+        return tarefaRepository.save(tarefa);
     }
 }

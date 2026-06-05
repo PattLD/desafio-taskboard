@@ -25,18 +25,11 @@
   gap: 2rem;
 }
 
-.modal-deletar-botao {
+.modal-deletar-btn {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: transparent;
-  border: none;
   font-size: 1em;
-  font-weight: lighter;
-  color: #424a5a;
-  padding: 2px 6px;
-  border-radius: 4px;
-  cursor: pointer;
 }
 
 textarea {

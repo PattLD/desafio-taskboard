@@ -47,3 +47,18 @@ export function checkTarefaEmGrupo(
       : g,
   );
 }
+
+export function deleteTarefaInGrupo(
+  grupos: GrupoData[],
+  grupoId: string,
+  tarefaId: string,
+): GrupoData[] {
+  return grupos.map((g) =>
+    g.id === grupoId
+      ? {
+          ...g,
+          tarefas: g.tarefas?.filter((t) => t.id !== tarefaId) || [],
+        }
+      : g,
+  );
+}

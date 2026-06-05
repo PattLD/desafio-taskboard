@@ -1,3 +1,4 @@
+import BotaoDelete from "../BotaoDelete";
 import "./styles.css";
 
 type TarefaModalProps = {
@@ -26,13 +27,7 @@ export default function TarefaModal({
   return (
     <div className="modal-bg">
       <div className="modal-container">
-        <button
-          className="modal-deletar-botao"
-          title="Fechar modal"
-          onClick={onClose}
-        >
-          ✕
-        </button>
+        <BotaoDelete className="modal-deletar-btn" evento={onClose} />
         <div className="form-tarefa">
           <label>Descrição da atividade</label>
           <textarea

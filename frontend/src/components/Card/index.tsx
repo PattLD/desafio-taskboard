@@ -4,6 +4,7 @@ import { useGrupoStore } from "../../store/appStore";
 import { useState } from "react";
 import TarefaModal from "../TarefaModal";
 import { formatarData, isAtrasada } from "../../utils/dataUtils";
+import BotaoDelete from "../BotaoDelete";
 
 interface CardProps {
   id: string;
@@ -23,7 +24,7 @@ function Card({
   const [editValue, setEditValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [dataValue, setDataValue] = useState("");
-  const { updateTarefa, checkTarefa } = useGrupoStore();
+  const { updateTarefa, checkTarefa, deleteTarefa } = useGrupoStore();
 
   const handleUpdate = async () => {
     if (!editValue.trim()) return;
@@ -37,6 +38,17 @@ function Card({
     setOpenModal(open);
   };
 
+  const statusData = () => {
+    if (completado) return <p>{formatarData(dataPrazo)} - Concluído!</p>;
+    if (!completado && isAtrasada(dataPrazo))
+      return <p>{formatarData(dataPrazo)} - Em atraso!</p>;
+    else return <p>{formatarData(dataPrazo)}</p>;
+  };
+
+  const handleDelete = async () => {
+    await deleteTarefa(grupoId, id);
+  };
+
   return (
     <div
       className={`card-container 
@@ -44,6 +56,7 @@ function Card({
         ${!completado && isAtrasada(dataPrazo) ? "card-atrasado" : ""}
       `}
     >
+      <BotaoDelete className="card-delete-btn" evento={handleDelete} />
       <span className="tarefa-texto" onClick={() => handleModal(true)}>
         {titulo}
       </span>
@@ -57,7 +70,7 @@ function Card({
         />
         <div className="data">
           <MdOutlineCalendarToday size={13} />
-          <p>{formatarData(dataPrazo)}</p>
+          {statusData()}
         </div>
       </div>
       <TarefaModal

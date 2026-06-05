@@ -10,7 +10,7 @@ interface GrupoProps {
 }
 
 function Grupo({ grupo }: GrupoProps) {
-  const contagem = 6;
+  const contagem = grupo.tarefas?.length ?? 0;
   const [titulo, setTitulo] = useState(grupo?.titulo ?? "");
   const deleteGrupo = useGrupoStore((state) => state.deleteGrupo);
   const updateGrupo = useGrupoStore((state) => state.updateGrupo);

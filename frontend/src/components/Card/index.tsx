@@ -37,6 +37,17 @@ function Card({
     setOpenModal(open);
   };
 
+  const statusData = () => {
+    if (completado) return <p>{formatarData(dataPrazo)} - Concluído!</p>;
+    if (!completado && isAtrasada(dataPrazo))
+      return <p>{formatarData(dataPrazo)} - Em atraso!</p>;
+    else return <p>{formatarData(dataPrazo)}</p>;
+  };
+
+  {
+    statusData();
+  }
+
   return (
     <div
       className={`card-container 
@@ -57,7 +68,7 @@ function Card({
         />
         <div className="data">
           <MdOutlineCalendarToday size={13} />
-          <p>{formatarData(dataPrazo)}</p>
+          {statusData()}
         </div>
       </div>
       <TarefaModal

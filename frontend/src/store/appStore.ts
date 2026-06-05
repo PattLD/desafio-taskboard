@@ -5,6 +5,7 @@ import { tarefaApi } from "../services/tarefaApi";
 import {
   addGrupo,
   addTarefaEmGrupo,
+  checkTarefaEmGrupo,
   updateTarefaEmGrupo,
 } from "../helper/appHelpers";
 
@@ -28,6 +29,7 @@ export interface AppStore {
     dataPrazo: string,
     completado: boolean,
   ) => Promise<void>;
+  checkTarefa: (grupoId: string, tarefaId: string) => Promise<void>;
 }
 
 export const useGrupoStore = create<AppStore>((set, get) => ({
@@ -129,8 +131,49 @@ export const useGrupoStore = create<AppStore>((set, get) => ({
         grupos: updateTarefaEmGrupo(state.grupos, grupoId, updated),
       }));
     } catch (error) {
-      console.error("Houve um erro ao atualizar atividade:", error);
+      console.error("Houve um erro ao atualizar tarefa:", error);
       throw error;
+    }
+  },
+
+  checkTarefa: async (grupoId: string, tarefaId: string) => {
+    const grupo = get().grupos.find((g) => g.id === grupoId);
+    const tarefa = grupo?.tarefas.find((a) => a.id === tarefaId);
+    if (!tarefa) {
+      console.error("Tarefa não encontrada: ", tarefaId);
+      return;
+    }
+
+    const atualCompletado = tarefa.completado ?? false;
+    const novoCompletado = !atualCompletado;
+
+    set((state) => ({
+      grupos: checkTarefaEmGrupo(
+        state.grupos,
+        grupoId,
+        tarefaId,
+        novoCompletado,
+      ),
+    }));
+
+    try {
+      await tarefaApi.update(
+        grupoId,
+        tarefaId,
+        tarefa.titulo,
+        tarefa.dataPrazo,
+        novoCompletado,
+      );
+    } catch (error) {
+      console.error("Houve um erro ao alternar status da atividade:", error);
+      set((state) => ({
+        grupos: checkTarefaEmGrupo(
+          state.grupos,
+          grupoId,
+          tarefaId,
+          atualCompletado,
+        ),
+      }));
     }
   },
 }));

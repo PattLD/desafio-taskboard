@@ -1,9 +1,9 @@
-import { useFormStatus } from "react-dom";
 import "./styles.css";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { useGrupoStore } from "../../store/appStore";
 import { useState } from "react";
 import TarefaModal from "../TarefaModal";
+import { formatarData, isAtrasada } from "../../utils/dataUtils";
 
 interface CardProps {
   id: string;
@@ -23,8 +23,7 @@ function Card({
   const [editValue, setEditValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [dataValue, setDataValue] = useState("");
-  const [novaTarefa, setnovaTarefa] = useState("");
-  const { updateTarefa } = useGrupoStore();
+  const { updateTarefa, checkTarefa } = useGrupoStore();
 
   const handleUpdate = async () => {
     if (!editValue.trim()) return;
@@ -39,7 +38,12 @@ function Card({
   };
 
   return (
-    <div className="card-container" style={{ borderLeft: "6px solid #4d8df4" }}>
+    <div
+      className={`card-container 
+        ${completado ? "card-completado" : ""} 
+        ${!completado && isAtrasada(dataPrazo) ? "card-atrasado" : ""}
+      `}
+    >
       <span className="tarefa-texto" onClick={() => handleModal(true)}>
         {titulo}
       </span>
@@ -48,11 +52,12 @@ function Card({
           type="checkbox"
           name="checkbox"
           id="checkbox-status"
-          defaultChecked={completado}
+          checked={completado}
+          onChange={() => checkTarefa(grupoId, id)}
         />
         <div className="data">
           <MdOutlineCalendarToday size={13} />
-          <p>{dataPrazo}</p>
+          <p>{formatarData(dataPrazo)}</p>
         </div>
       </div>
       <TarefaModal

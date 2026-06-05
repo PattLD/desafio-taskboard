@@ -29,3 +29,21 @@ export function updateTarefaEmGrupo(
       : g,
   );
 }
+
+export function checkTarefaEmGrupo(
+  grupos: GrupoData[],
+  grupoId: string,
+  tarefaId: string,
+  novoCompletado: boolean,
+): GrupoData[] {
+  return grupos.map((g) =>
+    g.id === grupoId
+      ? {
+          ...g,
+          tarefas: g.tarefas.map((t) =>
+            t.id === tarefaId ? { ...t, completado: novoCompletado } : t,
+          ),
+        }
+      : g,
+  );
+}

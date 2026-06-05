@@ -21,6 +21,23 @@ export const tarefaApi = {
     const response = await api.post<TarefaData>("/tarefas", payload);
     return response.data;
   },
+
+  update: async (
+    grupoId: string,
+    tarefaId: string,
+    titulo: string,
+    dataPrazo: string,
+    completado: boolean,
+  ): Promise<TarefaData> => {
+    const payload = {
+      titulo,
+      dataPrazo,
+      completado,
+      grupoId: grupoId,
+    };
+    const response = await api.put<TarefaData>(`/tarefas/${tarefaId}`, payload);
+    return response.data;
+  },
 };
 
 export default { tarefas: tarefaApi };

@@ -24,7 +24,7 @@ function Card({
   const [editValue, setEditValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [dataValue, setDataValue] = useState("");
-  const { updateTarefa, checkTarefa } = useGrupoStore();
+  const { updateTarefa, checkTarefa, deleteTarefa } = useGrupoStore();
 
   const handleUpdate = async () => {
     if (!editValue.trim()) return;
@@ -45,9 +45,9 @@ function Card({
     else return <p>{formatarData(dataPrazo)}</p>;
   };
 
-  {
-    statusData();
-  }
+  const handleDelete = async () => {
+    await deleteTarefa(grupoId, id);
+  };
 
   return (
     <div
@@ -56,6 +56,7 @@ function Card({
         ${!completado && isAtrasada(dataPrazo) ? "card-atrasado" : ""}
       `}
     >
+      <BotaoDelete className="card-delete-btn" evento={handleDelete} />
       <span className="tarefa-texto" onClick={() => handleModal(true)}>
         {titulo}
       </span>

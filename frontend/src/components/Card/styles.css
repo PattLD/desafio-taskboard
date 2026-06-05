@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   border-left: 6px solid #4d8df4;
+  position: relative;
 }
 
 .card-completado {
@@ -48,4 +49,16 @@
   gap: 5px;
   background: #8080803b;
   color: #434852;
+}
+
+.card-delete-btn {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  font-size: 0.7rem;
+  display: none;
+}
+
+.card-container:hover .card-delete-btn {
+  display: block;
 }

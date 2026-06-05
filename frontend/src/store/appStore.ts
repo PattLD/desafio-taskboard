@@ -6,6 +6,7 @@ import {
   addGrupo,
   addTarefaEmGrupo,
   checkTarefaEmGrupo,
+  deleteTarefaInGrupo,
   updateTarefaEmGrupo,
 } from "../helper/appHelpers";
 
@@ -30,6 +31,7 @@ export interface AppStore {
     completado: boolean,
   ) => Promise<void>;
   checkTarefa: (grupoId: string, tarefaId: string) => Promise<void>;
+  deleteTarefa: (grupoId: string, tarefaId: string) => Promise<void>;
 }
 
 export const useGrupoStore = create<AppStore>((set, get) => ({
@@ -174,6 +176,17 @@ export const useGrupoStore = create<AppStore>((set, get) => ({
           atualCompletado,
         ),
       }));
+    }
+  },
+
+  deleteTarefa: async (grupoId: string, tarefaId: string) => {
+    try {
+      set((state) => ({
+        grupos: deleteTarefaInGrupo(state.grupos, grupoId, tarefaId),
+      }));
+      await tarefaApi.delete(tarefaId);
+    } catch (error) {
+      console.error(" Houve um erro ao deletar:", error);
     }
   },
 }));

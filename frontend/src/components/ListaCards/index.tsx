@@ -7,6 +7,10 @@ interface ListaCardsProps {
 }
 
 export function ListaCards({ grupoId, tarefas }: ListaCardsProps) {
+  if (!tarefas || tarefas.length === 0) {
+    return <div>Nenhuma tarefa encontrada neste grupo.</div>;
+  }
+
   return (
     <div>
       {tarefas.map((tarefas) => (

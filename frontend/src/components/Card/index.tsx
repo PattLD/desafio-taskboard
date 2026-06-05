@@ -1,4 +1,3 @@
-import { useFormStatus } from "react-dom";
 import "./styles.css";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { useGrupoStore } from "../../store/appStore";
@@ -23,8 +22,7 @@ function Card({
   const [editValue, setEditValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [dataValue, setDataValue] = useState("");
-  const [novaTarefa, setnovaTarefa] = useState("");
-  const { updateTarefa } = useGrupoStore();
+  const { updateTarefa, checkTarefa } = useGrupoStore();
 
   const handleUpdate = async () => {
     if (!editValue.trim()) return;
@@ -39,7 +37,7 @@ function Card({
   };
 
   return (
-    <div className="card-container" style={{ borderLeft: "6px solid #4d8df4" }}>
+    <div className={`card-container ${completado ? "card-completado" : ""}`}>
       <span className="tarefa-texto" onClick={() => handleModal(true)}>
         {titulo}
       </span>
@@ -48,7 +46,8 @@ function Card({
           type="checkbox"
           name="checkbox"
           id="checkbox-status"
-          defaultChecked={completado}
+          checked={completado}
+          onChange={() => checkTarefa(grupoId, id)}
         />
         <div className="data">
           <MdOutlineCalendarToday size={13} />

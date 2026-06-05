@@ -15,7 +15,7 @@ export function ListaCards({ grupoId, tarefas }: ListaCardsProps) {
           key={tarefas.id}
           id={tarefas.id}
           titulo={tarefas.titulo}
-          prazo={tarefas.dataPrazo}
+          dataPrazo={tarefas.dataPrazo}
           completado={tarefas.completado}
         />
       ))}

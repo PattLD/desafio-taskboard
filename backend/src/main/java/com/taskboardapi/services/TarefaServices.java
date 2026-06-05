@@ -32,7 +32,15 @@ public class TarefaServices {
         return tarefaRepository.save(tarefa);
     }
 
-    public Tarefa update(Long id, Tarefa tarefa) {
+    public Tarefa update(Long id, TarefaDto dto) {
+        Grupo grupo = grupoRepository.findById(dto.grupoId()).orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
+        Tarefa tarefa = Tarefa.builder()
+                .id(id)
+                .titulo(dto.titulo())
+                .completado(dto.completado())
+                .dataPrazo(LocalDate.parse(dto.dataPrazo()))
+                .grupo(grupo)
+                .build();
         return tarefaRepository.save(tarefa);
     }
 

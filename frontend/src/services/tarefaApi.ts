@@ -33,14 +33,9 @@ export const tarefaApi = {
       titulo,
       dataPrazo,
       completado,
-      tarefaGrupo: {
-        id: grupoId,
-      },
+      grupoId: grupoId,
     };
-    const response = await api.put<TarefaData>(
-      `/activities/${tarefaId}`,
-      payload,
-    );
+    const response = await api.put<TarefaData>(`/tarefas/${tarefaId}`, payload);
     return response.data;
   },
 };

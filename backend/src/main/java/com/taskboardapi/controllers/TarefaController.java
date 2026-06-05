@@ -32,9 +32,8 @@ public class TarefaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tarefa> update(@PathVariable Long id, @RequestBody Tarefa tarefa) {
-        tarefa.setId(id);
-        return ResponseEntity.ok(tarefaServices.update(id, tarefa));
+    public ResponseEntity<Tarefa> update(@PathVariable Long id, @RequestBody TarefaDto dto) {
+        return ResponseEntity.ok(tarefaServices.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

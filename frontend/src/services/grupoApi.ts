@@ -17,9 +17,7 @@ export const grupoApi = {
   },
 
   update: async (id: string, titulo: string): Promise<GrupoData> => {
-    const response = await api.patch<GrupoData>(`/grupos/${id}/titulo`, {
-      titulo,
-    });
+    const response = await api.put<GrupoData>(`/grupos/${id}`, { titulo });
     return response.data;
   },
 };

@@ -4,6 +4,7 @@ import { useGrupoStore } from "../../store/appStore";
 import { useState } from "react";
 import TarefaModal from "../TarefaModal";
 import { formatarData, isAtrasada } from "../../utils/dataUtils";
+import BotaoDelete from "../BotaoDelete";
 
 interface CardProps {
   id: string;

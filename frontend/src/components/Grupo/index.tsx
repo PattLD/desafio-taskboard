@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useGrupoStore } from "../../store/appStore";
 import { ListaCards } from "../ListaCards";
 import TarefaModal from "../TarefaModal";
+import BotaoDelete from "../BotaoDelete";
 
 interface GrupoProps {
   grupo: GrupoData;
@@ -43,14 +44,10 @@ function Grupo({ grupo }: GrupoProps) {
 
   return (
     <div className="grupo-container">
-      <button
-        className="grupo-deletar-botao"
-        title="Excluir grupo"
-        onClick={() => deleteGrupo(grupo.id)}
-      >
-        ✕
-      </button>
-
+      <BotaoDelete
+        className="grupo-deletar-btn"
+        evento={() => deleteGrupo(grupo.id)}
+      />
       <div className="grupo-header">
         {editandoTitulo ? (
           <input

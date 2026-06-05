@@ -12,6 +12,7 @@ export function ListaCards({ grupoId, tarefas }: ListaCardsProps) {
       {tarefas.map((tarefas) => (
         <Card
           grupoId={grupoId}
+          key={tarefas.id}
           id={tarefas.id}
           titulo={tarefas.titulo}
           prazo={tarefas.dataPrazo}

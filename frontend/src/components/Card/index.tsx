@@ -48,7 +48,7 @@ function Card({
           type="checkbox"
           name="checkbox"
           id="checkbox-status"
-          checked={completado}
+          defaultChecked={completado}
         />
         <div className="data">
           <MdOutlineCalendarToday size={13} />

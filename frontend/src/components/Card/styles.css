@@ -19,6 +19,13 @@
   accent-color: #75cf87;
 }
 
+.card-atrasado {
+  border-left: 6px solid #cf7575;
+  background-color: #f8d8d8;
+  color: #291919;
+  accent-color: #cf7575;
+}
+
 .card-footer {
   display: flex;
   justify-content: left;

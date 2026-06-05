@@ -3,6 +3,7 @@ import { MdOutlineCalendarToday } from "react-icons/md";
 import { useGrupoStore } from "../../store/appStore";
 import { useState } from "react";
 import TarefaModal from "../TarefaModal";
+import { formatarData, isAtrasada } from "../../utils/dataUtils";
 
 interface CardProps {
   id: string;
@@ -37,7 +38,12 @@ function Card({
   };
 
   return (
-    <div className={`card-container ${completado ? "card-completado" : ""}`}>
+    <div
+      className={`card-container 
+        ${completado ? "card-completado" : ""} 
+        ${!completado && isAtrasada(dataPrazo) ? "card-atrasado" : ""}
+      `}
+    >
       <span className="tarefa-texto" onClick={() => handleModal(true)}>
         {titulo}
       </span>
@@ -51,7 +57,7 @@ function Card({
         />
         <div className="data">
           <MdOutlineCalendarToday size={13} />
-          <p>{dataPrazo}</p>
+          <p>{formatarData(dataPrazo)}</p>
         </div>
       </div>
       <TarefaModal

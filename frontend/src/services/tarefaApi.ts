@@ -16,9 +16,7 @@ export const tarefaApi = {
       titulo,
       dataPrazo,
       completado: false,
-      tarefaGrupo: {
-        id: grupoId,
-      },
+      grupoId: grupoId,
     };
     const response = await api.post<TarefaData>("/tarefas", payload);
     return response.data;

@@ -18,7 +18,7 @@ function Card({ id, grupoId, titulo, prazo, completado = false }: CardProps) {
           type="checkbox"
           name="checkbox"
           id="checkbox-status"
-          checked={completado}
+          defaultChecked={completado}
         />
         <div className="data">
           <MdOutlineCalendarToday size={13} />

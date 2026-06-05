@@ -1,5 +1,6 @@
 package com.taskboardapi.controllers;
 
+import com.taskboardapi.dto.TarefaDto;
 import com.taskboardapi.models.Tarefa;
 import com.taskboardapi.services.TarefaServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class TarefaController {
     }
 
     @PostMapping
-    public ResponseEntity<Tarefa> save(@RequestBody Tarefa tarefa) {
-        Tarefa novaTarefa = tarefaServices.save(tarefa);
+    public ResponseEntity<Tarefa> save(@RequestBody TarefaDto dto) {
+        Tarefa novaTarefa = tarefaServices.save(dto);
         return ResponseEntity.ok(novaTarefa);
     }
 

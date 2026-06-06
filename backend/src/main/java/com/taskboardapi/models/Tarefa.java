@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -13,8 +14,8 @@ import java.time.LocalDate;
 @Table(name = "tarefas")
 @Entity(name = "tarefas")
 public class Tarefa {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String titulo;
     private boolean completado = false;
     private LocalDate dataPrazo;

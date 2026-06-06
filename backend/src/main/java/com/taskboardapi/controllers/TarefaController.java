@@ -49,9 +49,9 @@ public class TarefaController {
         return ResponseEntity.ok(tarefas);
     }
 
-    @PatchMapping("/{tarefaId}/move/grupo")
-    public ResponseEntity<Tarefa> moveActivity(@PathVariable Long tarefaId, @RequestBody TarefaDto dto) {
-        Tarefa tarefaAtualizada = tarefaServices.moveTarefaEmGrupo(tarefaId, dto.grupoId());
+    @PutMapping("/{tarefaId}/move/{novoGrupoId}")
+    public ResponseEntity<Tarefa> moveTarefa(@PathVariable UUID tarefaId, @PathVariable UUID novoGrupoId) {
+        Tarefa tarefaAtualizada = tarefaServices.moveTarefaEmGrupo(tarefaId, novoGrupoId);
         return ResponseEntity.ok(tarefaAtualizada);
     }
 }

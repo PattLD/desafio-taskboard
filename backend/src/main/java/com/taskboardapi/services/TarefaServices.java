@@ -56,12 +56,12 @@ public class TarefaServices {
         return tarefaRepository.findByTituloContainingIgnoreCase(titulo);
     }
 
-    public Tarefa moveTarefaEmGrupo(Long tarefaId, Long novoGrupoId) {
+    public Tarefa moveTarefaEmGrupo(UUID tarefaId, UUID novoGrupoId) {
         Tarefa tarefa = tarefaRepository.findById(tarefaId)
                 .orElseThrow(() -> new RuntimeException("Tarefa não encontrada"));
-        Grupo grupo = grupoRepository.findById(novoGrupoId)
+        Grupo novoGrupo = grupoRepository.findById(novoGrupoId)
                 .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
-        tarefa.setGrupo(grupo);
+        tarefa.setGrupo(novoGrupo);
         return tarefaRepository.save(tarefa);
     }
 }

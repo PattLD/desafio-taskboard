@@ -7,6 +7,11 @@
   overflow-x: auto;
 }
 
+.header-notification {
+  padding: 0 3%;
+  margin-left: auto;
+}
+
 .title {
   margin: 0.4rem;
 }
@@ -14,6 +19,7 @@
 .container {
   margin: 2%;
   padding: 1%;
+  overflow-x: auto;
 }
 
 .lista-grupos {

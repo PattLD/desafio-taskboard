@@ -66,14 +66,16 @@ function Home() {
     await moveTarefaEmGrupo(origemGrupo.id, novoGrupo.id, tarefaId);
   };
 
-  const filtraGrupos = grupos
-    .map((grupo) => ({
-      ...grupo,
-      tarefas: grupo.tarefas?.filter((tarefa) =>
-        tarefa.titulo.toLowerCase().includes(pesquisaTarefa.toLowerCase()),
-      ),
-    }))
-    .filter((grupo) => grupo.tarefas.length > 0);
+  const filtraGrupos = !pesquisaTarefa.trim()
+    ? grupos
+    : grupos
+        .map((grupo) => ({
+          ...grupo,
+          tarefas: grupo.tarefas?.filter((tarefa) =>
+            tarefa.titulo.toLowerCase().includes(pesquisaTarefa.toLowerCase()),
+          ),
+        }))
+        .filter((grupo) => grupo.tarefas.length > 0);
 
   return (
     <DndContext

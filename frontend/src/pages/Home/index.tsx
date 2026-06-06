@@ -2,7 +2,7 @@ import "./styles.css";
 import { FaSquareCheck } from "react-icons/fa6";
 import BarraPesquisa from "../../components/BarraPesquisa";
 import Grupo from "../../components/Grupo";
-import { useGrupoStore } from "../../store/appStore";
+import { useAppStore } from "../../store/appStore";
 import { useEffect, useState } from "react";
 import BotaoGrupo from "../../components/BotaoGrupo";
 import {
@@ -19,8 +19,13 @@ import type { TarefaData } from "../../interface/TarefaData";
 import Card from "../../components/Card";
 
 function Home() {
-  const { grupos, carregando, listarGrupos, moveTarefaEmGrupo } =
-    useGrupoStore();
+  const {
+    grupos,
+    carregando,
+    listarGrupos,
+    moveTarefaEmGrupo,
+    pesquisaTarefa,
+  } = useAppStore();
   const [tarefaAtiva, setTarefaAtiva] = useState<TarefaData | null>(null);
 
   const sensors = useSensors(
@@ -58,9 +63,17 @@ function Home() {
     if (!origemGrupo || !novoGrupo || origemGrupo.id === novoGrupo.id) {
       return;
     }
-
     await moveTarefaEmGrupo(origemGrupo.id, novoGrupo.id, tarefaId);
   };
+
+  const filtraGrupos = grupos
+    .map((grupo) => ({
+      ...grupo,
+      tarefas: grupo.tarefas?.filter((tarefa) =>
+        tarefa.titulo.toLowerCase().includes(pesquisaTarefa.toLowerCase()),
+      ),
+    }))
+    .filter((grupo) => grupo.tarefas.length > 0);
 
   return (
     <DndContext
@@ -77,7 +90,7 @@ function Home() {
       <div className="container">
         <div className="lista-grupos">
           {!carregando &&
-            grupos.map((grupo) => (
+            filtraGrupos.map((grupo) => (
               <div key={grupo.id}>
                 <Grupo grupo={grupo} />
               </div>

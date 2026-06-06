@@ -1,12 +1,12 @@
 import { useState } from "react";
 import "./styles.css";
-import { useGrupoStore } from "../../store/appStore";
+import { useAppStore } from "../../store/appStore";
 
 function BotaoGrupo({}) {
   const [novoGrupoTitulo, setNovoGrupoTitulo] = useState("");
   const [criando, setCriando] = useState(false);
 
-  const { createGrupo } = useGrupoStore();
+  const { createGrupo } = useAppStore();
 
   const handleCreateGrupo = async () => {
     if (!novoGrupoTitulo.trim()) return;

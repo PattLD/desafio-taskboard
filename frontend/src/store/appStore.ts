@@ -208,6 +208,15 @@ export const useGrupoStore = create<AppStore>((set, get) => ({
       return;
     }
 
+    set((state) => ({
+      grupos: moveTarefaEmGrupoHelper(
+        state.grupos,
+        origemGrupoId,
+        novoGrupoId,
+        tarefa,
+      ),
+    }));
+
     try {
       await tarefaApi.move(tarefaId, novoGrupoId);
     } catch (error) {

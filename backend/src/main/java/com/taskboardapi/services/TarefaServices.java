@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TarefaServices {
@@ -34,7 +35,7 @@ public class TarefaServices {
         return tarefaRepository.save(tarefa);
     }
 
-    public Tarefa update(Long id, TarefaDto dto) {
+    public Tarefa update(UUID id, TarefaDto dto) {
         Grupo grupo = grupoRepository.findById(dto.grupoId())
                 .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
         Tarefa tarefa = Tarefa.builder()
@@ -47,7 +48,7 @@ public class TarefaServices {
         return tarefaRepository.save(tarefa);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(UUID id) {
         tarefaRepository.deleteById(id);
     }
 

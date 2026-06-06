@@ -6,6 +6,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
@@ -14,8 +15,8 @@ import java.util.List;
 @Table(name = "grupos")
 @Entity(name = "grupos")
 public class Grupo {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     private String titulo;
 
     @JsonManagedReference

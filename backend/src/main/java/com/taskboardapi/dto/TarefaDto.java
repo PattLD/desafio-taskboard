@@ -1,8 +1,10 @@
 package com.taskboardapi.dto;
 
+import java.util.UUID;
+
 public record TarefaDto(
         String titulo,
         String dataPrazo,
-        Boolean completado,
-        Long grupoId) {
+        boolean completado,
+        UUID grupoId) {
 }

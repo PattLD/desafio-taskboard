@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/tarefas")
@@ -32,12 +33,12 @@ public class TarefaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Tarefa> update(@PathVariable Long id, @RequestBody TarefaDto dto) {
+    public ResponseEntity<Tarefa> update(@PathVariable UUID id, @RequestBody TarefaDto dto) {
         return ResponseEntity.ok(tarefaServices.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
         tarefaServices.deleteById(id);
         return ResponseEntity.noContent().build();
     }

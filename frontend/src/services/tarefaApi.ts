@@ -42,6 +42,13 @@ export const tarefaApi = {
   delete: async (tarefaId: string): Promise<void> => {
     await api.delete(`/tarefas/${tarefaId}`);
   },
+
+  move: async (tarefaId: string, novoGrupoId: string): Promise<TarefaData> => {
+    const response = await api.put<TarefaData>(
+      `/tarefas/${tarefaId}/move/${novoGrupoId}`,
+    );
+    return response.data;
+  },
 };
 
 export default { tarefas: tarefaApi };

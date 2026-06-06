@@ -7,6 +7,7 @@ import {
   addTarefaEmGrupo,
   checkTarefaEmGrupo,
   deleteTarefaInGrupo,
+  moveTarefaEmGrupoHelper,
   updateTarefaEmGrupo,
 } from "../helper/appHelpers";
 
@@ -32,6 +33,11 @@ export interface AppStore {
   ) => Promise<void>;
   checkTarefa: (grupoId: string, tarefaId: string) => Promise<void>;
   deleteTarefa: (grupoId: string, tarefaId: string) => Promise<void>;
+  moveTarefaEmGrupo: (
+    origemGrupoId: string,
+    novoGrupoId: string,
+    tarefaId: string,
+  ) => Promise<void>;
 }
 
 export const useGrupoStore = create<AppStore>((set, get) => ({
@@ -187,6 +193,26 @@ export const useGrupoStore = create<AppStore>((set, get) => ({
       await tarefaApi.delete(tarefaId);
     } catch (error) {
       console.error(" Houve um erro ao deletar:", error);
+    }
+  },
+
+  moveTarefaEmGrupo: async (
+    origemGrupoId: string,
+    novoGrupoId: string,
+    tarefaId: string,
+  ) => {
+    const origemGrupo = get().grupos.find((g) => g.id === origemGrupoId);
+    const tarefa = origemGrupo?.tarefas?.find((t) => t.id === tarefaId);
+
+    if (!tarefa) {
+      return;
+    }
+
+    try {
+      await tarefaApi.move(tarefaId, novoGrupoId);
+    } catch (error) {
+      console.error(" Houve um erro ao mover atividade:", error);
+      get().listarGrupos();
     }
   },
 }));

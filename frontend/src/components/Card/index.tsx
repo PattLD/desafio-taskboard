@@ -5,6 +5,8 @@ import { useState } from "react";
 import TarefaModal from "../TarefaModal";
 import { formatarData, isAtrasada } from "../../utils/dataUtils";
 import BotaoDelete from "../BotaoDelete";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface CardProps {
   id: string;
@@ -49,39 +51,58 @@ function Card({
     await deleteTarefa(grupoId, id);
   };
 
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
   return (
-    <div
-      className={`card-container 
+    <div ref={setNodeRef} style={style}>
+      <div
+        className={`card-container 
         ${completado ? "card-completado" : ""} 
         ${!completado && isAtrasada(dataPrazo) ? "card-atrasado" : ""}
       `}
-    >
-      <BotaoDelete className="card-delete-btn" evento={handleDelete} />
-      <span className="tarefa-texto" onClick={() => handleModal(true)}>
-        {titulo}
-      </span>
-      <div className="card-footer">
-        <input
-          type="checkbox"
-          name="checkbox"
-          id="checkbox-status"
-          checked={completado}
-          onChange={() => checkTarefa(grupoId, id)}
-        />
-        <div className="data">
-          <MdOutlineCalendarToday size={13} />
-          {statusData()}
+        {...listeners}
+        {...attributes}
+      >
+        <BotaoDelete className="card-delete-btn" evento={handleDelete} />
+        <span className="tarefa-texto" onClick={() => handleModal(true)}>
+          {titulo}
+        </span>
+        <div className="card-footer">
+          <input
+            type="checkbox"
+            name="checkbox"
+            id="checkbox-status"
+            checked={completado}
+            onChange={() => checkTarefa(grupoId, id)}
+          />
+          <div className="data">
+            <MdOutlineCalendarToday size={13} />
+            {statusData()}
+          </div>
         </div>
+        <TarefaModal
+          isOpen={openModal}
+          onClose={() => setOpenModal(false)}
+          value={editValue}
+          setValue={setEditValue}
+          dateValue={dataValue}
+          setDateValue={setDataValue}
+          onSave={handleUpdate}
+        />
       </div>
-      <TarefaModal
-        isOpen={openModal}
-        onClose={() => setOpenModal(false)}
-        value={editValue}
-        setValue={setEditValue}
-        dateValue={dataValue}
-        setDateValue={setDataValue}
-        onSave={handleUpdate}
-      />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import "./styles.css";
 import { MdOutlineCalendarToday } from "react-icons/md";
-import { useGrupoStore } from "../../store/appStore";
+import { useAppStore } from "../../store/appStore";
 import { useState } from "react";
 import TarefaModal from "../TarefaModal";
 import { formatarData, isAtrasada } from "../../utils/dataUtils";
@@ -26,7 +26,7 @@ function Card({
   const [editValue, setEditValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [dataValue, setDataValue] = useState("");
-  const { updateTarefa, checkTarefa, deleteTarefa } = useGrupoStore();
+  const { updateTarefa, checkTarefa, deleteTarefa } = useAppStore();
 
   const handleUpdate = async () => {
     if (!editValue.trim()) return;

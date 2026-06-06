@@ -49,6 +49,13 @@ export const tarefaApi = {
     );
     return response.data;
   },
+
+  search: async (titulo: string): Promise<TarefaData[]> => {
+    const response = await api.get<TarefaData[]>("/tarefas/pesquisa", {
+      params: { titulo },
+    });
+    return response.data;
+  },
 };
 
 export default { tarefas: tarefaApi };

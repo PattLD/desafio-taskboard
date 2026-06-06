@@ -1,7 +1,7 @@
 import "./styles.css";
 import type { GrupoData } from "../../interface/GrupoData";
 import { useState } from "react";
-import { useGrupoStore } from "../../store/appStore";
+import { useAppStore } from "../../store/appStore";
 import { ListaCards } from "../ListaCards";
 import TarefaModal from "../TarefaModal";
 import BotaoDelete from "../BotaoDelete";
@@ -13,13 +13,13 @@ interface GrupoProps {
 function Grupo({ grupo }: GrupoProps) {
   const contagem = grupo.tarefas?.length ?? 0;
   const [titulo, setTitulo] = useState(grupo?.titulo ?? "");
-  const deleteGrupo = useGrupoStore((state) => state.deleteGrupo);
-  const updateGrupo = useGrupoStore((state) => state.updateGrupo);
+  const deleteGrupo = useAppStore((state) => state.deleteGrupo);
+  const updateGrupo = useAppStore((state) => state.updateGrupo);
   const [editandoTitulo, setEditandoTitulo] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [dataValue, setDataValue] = useState("");
   const [novaTarefa, setnovaTarefa] = useState("");
-  const { createTarefa } = useGrupoStore();
+  const { createTarefa } = useAppStore();
 
   const handleUpdateTitulo = async () => {
     if (!titulo.trim()) {

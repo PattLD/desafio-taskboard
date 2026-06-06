@@ -38,11 +38,14 @@ export interface AppStore {
     novoGrupoId: string,
     tarefaId: string,
   ) => Promise<void>;
+  setPesquisaTarefa: (term: string) => void;
+  pesquisaTarefa: string;
 }
 
-export const useGrupoStore = create<AppStore>((set, get) => ({
+export const useAppStore = create<AppStore>((set, get) => ({
   grupos: [],
   carregando: false,
+  pesquisaTarefa: "",
 
   listarGrupos: async () => {
     set({ carregando: true });
@@ -223,5 +226,9 @@ export const useGrupoStore = create<AppStore>((set, get) => ({
       console.error(" Houve um erro ao mover atividade:", error);
       get().listarGrupos();
     }
+  },
+
+  setPesquisaTarefa: (Tarefa: string) => {
+    set({ pesquisaTarefa: Tarefa });
   },
 }));

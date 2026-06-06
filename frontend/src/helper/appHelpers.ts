@@ -62,3 +62,26 @@ export function deleteTarefaInGrupo(
       : g,
   );
 }
+
+export function moveTarefaEmGrupoHelper(
+  grupos: GrupoData[],
+  origemGrupoId: string,
+  novoGrupoId: string,
+  tarefa: TarefaData,
+): GrupoData[] {
+  return grupos.map((g) => {
+    if (g.id === origemGrupoId) {
+      return {
+        ...g,
+        tarefas: g.tarefas?.filter((t) => t.id !== tarefa.id) || [],
+      };
+    }
+    if (g.id === novoGrupoId) {
+      return {
+        ...g,
+        tarefas: [...(g.tarefas || []), tarefa],
+      };
+    }
+    return g;
+  });
+}

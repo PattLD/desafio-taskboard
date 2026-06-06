@@ -16,7 +16,7 @@ public class TarefaController {
     private final TarefaServices tarefaServices;
 
     @Autowired
-    public TarefaController (TarefaServices tarefaServices) {
+    public TarefaController(TarefaServices tarefaServices) {
         this.tarefaServices = tarefaServices;
     }
 
@@ -47,5 +47,11 @@ public class TarefaController {
     public ResponseEntity<List<Tarefa>> findByTitulo(@RequestParam String titulo) {
         List<Tarefa> tarefas = tarefaServices.findByTitulo(titulo);
         return ResponseEntity.ok(tarefas);
+    }
+
+    @PutMapping("/{tarefaId}/move/{novoGrupoId}")
+    public ResponseEntity<Tarefa> moveTarefa(@PathVariable UUID tarefaId, @PathVariable UUID novoGrupoId) {
+        Tarefa tarefaAtualizada = tarefaServices.moveTarefaEmGrupo(tarefaId, novoGrupoId);
+        return ResponseEntity.ok(tarefaAtualizada);
     }
 }

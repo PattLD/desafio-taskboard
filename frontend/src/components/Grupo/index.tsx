@@ -72,7 +72,7 @@ function Grupo({ grupo }: GrupoProps) {
         </div>
       </div>
       <div className="grupo-cards">
-        <ListaCards grupoId={grupo.id} tarefas={grupo.tarefas || []} />
+        <ListaCards grupoId={String(grupo.id)} tarefas={grupo.tarefas || []} />
       </div>
       <button className="card-botao" onClick={() => setOpenModal(true)}>
         + Novo Card

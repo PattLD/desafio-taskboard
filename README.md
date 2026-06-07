@@ -1,7 +1,5 @@
 # ☑️ Projeto TaskBoard
-É uma aplicação web em estilo Kanban com o objetivo de organizar e gerenciar tarefas, desenvolvida principalmente por meio do Java Spring e Reactjs.
-
-Seu principal objetivo é ser uma ferramenta de produtividade ao usuário, permitindo o gerenciamento de atividades com acompanhamento de prazos. 
+TaskBoard é uma aplicação web no estilo Kanban para gerenciamento de tarefas e acompanhamento de prazos. O projeto foi desenvolvido com Java Spring Boot no backend, React.js no frontend e PostgreSQL como banco de dados, com a infraestrutura da API orquestrada via Docker Compose.
 
 ## 📸 Demonstração
 <img width="1345" height="648" alt="image" src="https://github.com/user-attachments/assets/4feca5fd-c0bb-4974-a241-9628ed69b5ff" />
@@ -11,8 +9,8 @@ Seu principal objetivo é ser uma ferramenta de produtividade ao usuário, permi
 * **Organização Visual:** Interface baseada no método Kanban para acompanhamento de status.
 * **Gestão de Tarefas:** Criação, leitura, edição e exclusão de tarefas.
 * **Gestão de Grupos:** Criação, leitura, edição e exclusão de grupos.
-* **Notificação:** Aviso em caso de atraso em tarefas
-* **Pesquisa de Tarefas:** Barra de pesquisa que lista atividades correspondentes
+* **Notificação:** Aviso em caso de atraso em tarefas.
+* **Pesquisa de Tarefas:** Barra de pesquisa que lista atividades correspondentes.
 * **Interatividade:** Suporte a *Drag and Drop* (arrastar e soltar) para mover tarefas entre colunas de forma fluida.
 * **Ambiente Isolado:** API e banco de dados utilizando containers Docker.
 
@@ -37,7 +35,7 @@ Seu principal objetivo é ser uma ferramenta de produtividade ao usuário, permi
 * @dnd-kit
 * zustand
 
-## Infraestrutura:
+### Infraestrutura:
 * Docker e Docker Compose
   
 ## 📂 Estrutura de pastas
@@ -59,7 +57,7 @@ desafio-taskboard/
 ```
 
 ## ⚙️ Instalação e Configuração 
-### Requerimentos
+### Pré-requisitos
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org)  20.19+
 * [Docker](https://www.docker.com) com Docker Compose
@@ -89,5 +87,5 @@ cd frontend
 npm run dev
 ```
 
-## ✒️ Autoria
+## ✒️ Autora
 Desenvolvido por Patricia Lindoso Duarte (@PattLD).

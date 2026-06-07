@@ -84,53 +84,55 @@ function Card({
   };
 
   return (
-    <div ref={setNodeRef} style={style}>
-      <div
-        className={`card-container 
+    <div>
+      <div ref={setNodeRef} style={style}>
+        <div
+          className={`card-container 
         ${completado ? "card-completado" : ""} 
         ${!completado && isAtrasada(dataPrazo) ? "card-atrasado" : ""}
       `}
-        {...listeners}
-        {...attributes}
-      >
-        <BotaoDelete className="card-delete-btn" evento={handleDelete} />
-        <span className="tarefa-texto" onClick={() => handleModalTarefa(true)}>
-          {titulo}
-        </span>
-        <div className="card-footer">
-          <input
-            type="checkbox"
-            name="checkbox"
-            id="checkbox-status"
-            checked={completado}
-            onChange={() => checkTarefa(grupoId, id)}
-          />
-          <div className="data" onClick={() => handleModalData(true)}>
-            <MdOutlineCalendarToday size={13} />
-            {statusData()}
+          {...listeners}
+          {...attributes}
+        >
+          <BotaoDelete className="card-delete-btn" evento={handleDelete} />
+          <span
+            className="tarefa-texto"
+            onClick={() => handleModalTarefa(true)}
+          >
+            {titulo}
+          </span>
+          <div className="card-footer">
+            <input
+              type="checkbox"
+              name="checkbox"
+              id="checkbox-status"
+              checked={completado}
+              onChange={() => checkTarefa(grupoId, id)}
+            />
+            <div className="data" onClick={() => handleModalData(true)}>
+              <MdOutlineCalendarToday size={13} />
+              {statusData()}
+            </div>
           </div>
         </div>
-        <Modal
-          isOpen={OpenModalTarefa}
-          onClose={() => setOpenModalTarefa(false)}
-          onSave={handleUpdate}
-          disableBotaoSalvar={!editValue.trim()}
-        >
-          <FormTarefa setValue={setEditValue} value={editValue}></FormTarefa>
-        </Modal>
-
-        <Modal
-          isOpen={OpenModalData}
-          onClose={() => setOpenModalData(false)}
-          onSave={handleUpdate}
-          disableBotaoSalvar={!editValue.trim()}
-        >
-          <FormDate
-            dateValue={dataValue}
-            setDateValue={setDataValue}
-          ></FormDate>
-        </Modal>
       </div>
+      <Modal
+        isOpen={OpenModalTarefa}
+        onClose={() => setOpenModalTarefa(false)}
+        onSave={handleUpdate}
+        disableBotaoSalvar={!editValue.trim()}
+      >
+        <FormTarefa setValue={setEditValue} value={editValue}></FormTarefa>
+      </Modal>
+
+      <Modal
+        isOpen={OpenModalData}
+        onClose={() => setOpenModalData(false)}
+        onSave={handleUpdate}
+        disableBotaoSalvar={!editValue.trim()}
+      >
+        <FormDate dateValue={dataValue} setDateValue={setDataValue}></FormDate>
+      </Modal>
     </div>
   );
 }

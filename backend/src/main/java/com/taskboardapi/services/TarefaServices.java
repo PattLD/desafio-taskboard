@@ -15,7 +15,7 @@ import java.util.UUID;
 @Service
 public class TarefaServices {
     private final GrupoRepository grupoRepository;
-    private TarefaRepository tarefaRepository;
+    private final TarefaRepository tarefaRepository;
 
     @Autowired
     public TarefaServices(TarefaRepository tarefaRepository, GrupoRepository grupoRepository) {
@@ -31,7 +31,8 @@ public class TarefaServices {
         Grupo grupo = grupoRepository.findById(dto.grupoId())
                 .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
         Tarefa tarefa = Tarefa.builder().titulo(dto.titulo()).completado(dto.completado())
-                .dataPrazo(LocalDate.parse(dto.dataPrazo())).grupo(grupo).build();
+                .dataPrazo(dto.dataPrazo() != null ? LocalDate.parse(dto.dataPrazo()) : null)
+                .grupo(grupo).build();
         return tarefaRepository.save(tarefa);
     }
 
@@ -42,7 +43,7 @@ public class TarefaServices {
                 .id(id)
                 .titulo(dto.titulo())
                 .completado(dto.completado())
-                .dataPrazo(LocalDate.parse(dto.dataPrazo()))
+                .dataPrazo(dto.dataPrazo() != null ? LocalDate.parse(dto.dataPrazo()) : null)
                 .grupo(grupo)
                 .build();
         return tarefaRepository.save(tarefa);

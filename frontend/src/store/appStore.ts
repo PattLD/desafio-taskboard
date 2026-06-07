@@ -22,14 +22,14 @@ export interface AppStore {
   createTarefa: (
     grupoId: string,
     titulo: string,
-    dataPrazo: string,
+    dataPrazo?: string,
   ) => Promise<void>;
   updateTarefa: (
     grupoId: string,
     tarefaId: string,
     titulo: string,
-    dataPrazo: string,
     completado: boolean,
+    dataPrazo?: string,
   ) => Promise<void>;
   checkTarefa: (grupoId: string, tarefaId: string) => Promise<void>;
   deleteTarefa: (grupoId: string, tarefaId: string) => Promise<void>;
@@ -106,7 +106,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
 
   // tarefas endpoint
 
-  createTarefa: async (grupoId: string, titulo: string, dataPrazo: string) => {
+  createTarefa: async (grupoId: string, titulo: string, dataPrazo?: string) => {
     try {
       const novaTarefa = await tarefaApi.create(grupoId, titulo, dataPrazo);
 
@@ -127,16 +127,16 @@ export const useAppStore = create<AppStore>((set, get) => ({
     grupoId: string,
     tarefaId: string,
     titulo: string,
-    dataPrazo: string,
     completado: boolean,
+    dataPrazo?: string,
   ) => {
     try {
       const updated = await tarefaApi.update(
         grupoId,
         tarefaId,
         titulo,
-        dataPrazo,
         completado,
+        dataPrazo,
       );
       set((state) => ({
         grupos: updateTarefaEmGrupo(state.grupos, grupoId, updated),
@@ -172,8 +172,8 @@ export const useAppStore = create<AppStore>((set, get) => ({
         grupoId,
         tarefaId,
         tarefa.titulo,
-        tarefa.dataPrazo,
         novoCompletado,
+        tarefa.dataPrazo,
       );
     } catch (error) {
       console.error("Houve um erro ao alternar status da atividade:", error);

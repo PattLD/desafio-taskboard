@@ -3,8 +3,9 @@ import type { GrupoData } from "../../interface/GrupoData";
 import { useState } from "react";
 import { useAppStore } from "../../store/appStore";
 import { ListaCards } from "../ListaCards";
-import TarefaModal from "../TarefaModal";
+import Modal from "../Modal";
 import BotaoDelete from "../BotaoDelete";
+import FormTarefa from "../FormTarefa";
 
 interface GrupoProps {
   grupo: GrupoData;
@@ -35,8 +36,8 @@ function Grupo({ grupo }: GrupoProps) {
   };
 
   const handleAdd = async () => {
-    if (!novaTarefa.trim() || !dataValue.trim()) return;
-    await createTarefa(grupo.id, novaTarefa, dataValue);
+    if (!novaTarefa.trim()) return;
+    await createTarefa(grupo.id, novaTarefa, dataValue || undefined);
     setnovaTarefa("");
     setDataValue("");
     setOpenModal(false);
@@ -77,15 +78,14 @@ function Grupo({ grupo }: GrupoProps) {
       <button className="card-botao" onClick={() => setOpenModal(true)}>
         + Novo Card
       </button>
-      <TarefaModal
+      <Modal
         isOpen={openModal}
         onClose={() => setOpenModal(false)}
-        value={novaTarefa}
-        setValue={setnovaTarefa}
-        dateValue={dataValue}
-        setDateValue={setDataValue}
         onSave={handleAdd}
-      />
+        disableBotaoSalvar={!novaTarefa.trim()}
+      >
+        <FormTarefa setValue={setnovaTarefa} value={novaTarefa}></FormTarefa>
+      </Modal>
     </div>
   );
 }

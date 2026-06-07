@@ -2,18 +2,20 @@ import "./styles.css";
 import { MdOutlineCalendarToday } from "react-icons/md";
 import { useAppStore } from "../../store/appStore";
 import { useState } from "react";
-import TarefaModal from "../TarefaModal";
+import Modal from "../Modal";
 import { formatarData, isAtrasada } from "../../utils/dataUtils";
 import BotaoDelete from "../BotaoDelete";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import FormTarefa from "../FormTarefa";
+import FormDate from "../FormDate";
 
 interface CardProps {
   id: string;
   grupoId: string;
   titulo: string;
-  dataPrazo: string;
   completado: boolean;
+  dataPrazo?: string;
 }
 
 function Card({
@@ -24,23 +26,36 @@ function Card({
   completado = false,
 }: CardProps) {
   const [editValue, setEditValue] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-  const [dataValue, setDataValue] = useState("");
+  const [OpenModalTarefa, setOpenModalTarefa] = useState(false);
+  const [OpenModalData, setOpenModalData] = useState(false);
+  const [dataValue, setDataValue] = useState(dataPrazo || "");
   const { updateTarefa, checkTarefa, deleteTarefa } = useAppStore();
 
   const handleUpdate = async () => {
     if (!editValue.trim()) return;
-    await updateTarefa(grupoId, id, editValue, dataValue, completado);
-    setOpenModal(false);
+    await updateTarefa(
+      grupoId,
+      id,
+      editValue,
+      completado,
+      dataValue || undefined,
+    );
+    setOpenModalData(false);
+    setOpenModalTarefa(false);
   };
 
-  const handleModal = (open: boolean) => {
+  const handleModalTarefa = (open: boolean) => {
     setEditValue(titulo);
-    setDataValue(dataPrazo);
-    setOpenModal(open);
+    setOpenModalTarefa(open);
+  };
+
+  const handleModalData = (open: boolean) => {
+    setDataValue(dataPrazo || "");
+    setOpenModalData(open);
   };
 
   const statusData = () => {
+    if (!dataPrazo) return null;
     if (completado) return <p>{formatarData(dataPrazo)} - Concluído!</p>;
     if (!completado && isAtrasada(dataPrazo))
       return <p>{formatarData(dataPrazo)} - Em atraso!</p>;
@@ -77,7 +92,7 @@ function Card({
         {...attributes}
       >
         <BotaoDelete className="card-delete-btn" evento={handleDelete} />
-        <span className="tarefa-texto" onClick={() => handleModal(true)}>
+        <span className="tarefa-texto" onClick={() => handleModalTarefa(true)}>
           {titulo}
         </span>
         <div className="card-footer">
@@ -88,20 +103,31 @@ function Card({
             checked={completado}
             onChange={() => checkTarefa(grupoId, id)}
           />
-          <div className="data">
+          <div className="data" onClick={() => handleModalData(true)}>
             <MdOutlineCalendarToday size={13} />
             {statusData()}
           </div>
         </div>
-        <TarefaModal
-          isOpen={openModal}
-          onClose={() => setOpenModal(false)}
-          value={editValue}
-          setValue={setEditValue}
-          dateValue={dataValue}
-          setDateValue={setDataValue}
+        <Modal
+          isOpen={OpenModalTarefa}
+          onClose={() => setOpenModalTarefa(false)}
           onSave={handleUpdate}
-        />
+          disableBotaoSalvar={!editValue.trim()}
+        >
+          <FormTarefa setValue={setEditValue} value={editValue}></FormTarefa>
+        </Modal>
+
+        <Modal
+          isOpen={OpenModalData}
+          onClose={() => setOpenModalData(false)}
+          onSave={handleUpdate}
+          disableBotaoSalvar={!editValue.trim()}
+        >
+          <FormDate
+            dateValue={dataValue}
+            setDateValue={setDataValue}
+          ></FormDate>
+        </Modal>
       </div>
     </div>
   );

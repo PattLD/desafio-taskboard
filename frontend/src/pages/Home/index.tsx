@@ -17,6 +17,7 @@ import {
 } from "@dnd-kit/core";
 import type { TarefaData } from "../../interface/TarefaData";
 import Card from "../../components/Card";
+import { Notificacao } from "../../components/Notificação";
 
 function Home() {
   const {
@@ -88,6 +89,9 @@ function Home() {
         <FaSquareCheck size={28} color="#1275d1" />
         <h1 className="title">TaskBoard</h1>
         <BarraPesquisa />
+        <div className="header-notification">
+          <Notificacao />
+        </div>
       </div>
       <div className="container">
         <div className="lista-grupos">

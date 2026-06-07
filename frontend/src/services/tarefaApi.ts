@@ -10,11 +10,11 @@ export const tarefaApi = {
   create: async (
     grupoId: string,
     titulo: string,
-    dataPrazo: string,
+    dataPrazo?: string,
   ): Promise<TarefaData> => {
     const payload = {
       titulo,
-      dataPrazo,
+      dataPrazo: dataPrazo || null,
       completado: false,
       grupoId: grupoId,
     };
@@ -26,12 +26,12 @@ export const tarefaApi = {
     grupoId: string,
     tarefaId: string,
     titulo: string,
-    dataPrazo: string,
     completado: boolean,
+    dataPrazo?: string,
   ): Promise<TarefaData> => {
     const payload = {
       titulo,
-      dataPrazo,
+      dataPrazo: dataPrazo || null,
       completado,
       grupoId: grupoId,
     };

@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Service
 public class GrupoServices {
-    private GrupoRepository grupoRepository;
+    private final GrupoRepository grupoRepository;
 
     public GrupoServices (GrupoRepository grupoRepository) {
         this.grupoRepository = grupoRepository;
@@ -23,7 +23,10 @@ public class GrupoServices {
     }
 
     public Grupo update(UUID id, Grupo grupo) {
-        return grupoRepository.save(grupo);
+        Grupo grupoExistente = grupoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Grupo não encontrado"));
+        grupoExistente.setTitulo(grupo.getTitulo());
+        return grupoRepository.save(grupoExistente);
     }
 
     public void deleteById(UUID id) {

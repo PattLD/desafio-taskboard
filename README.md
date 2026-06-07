@@ -1,5 +1,5 @@
 # ☑️ Projeto TaskBoard
-É uma aplicação web em estilo Kanban com o objetivo de organizar e gerênciar tarefas, desenvolvida principalmente por meio do Java Spring e Reactjs.
+É uma aplicação web em estilo Kanban com o objetivo de organizar e gerenciar tarefas, desenvolvida principalmente por meio do Java Spring e Reactjs.
 
 Seu principal objetivo é ser uma ferramenta de produtividade ao usuário, permitindo o gerenciamento de atividades com acompanhamento de prazos. 
 
@@ -76,17 +76,13 @@ cd backend
 cp .env.example .env
 ```
 
-### 2. Iniciar API
-**Passo 1**: Construa a imagem Docker da aplicação:
+### 3. Iniciar API
+Na pasta backend, inicie Docker Compose com esse comando
 ```
 cd backend
-docker build -t taskboard-backend .
-```
-**Execute o Docker**: Execute o Docker
-```
 docker compose up -d --build
 ```
-### 3. Iniciar Aplicação
+### 4. Iniciar Aplicação
 Abra um novo terminal para rodar a interface
 ```
 cd frontend

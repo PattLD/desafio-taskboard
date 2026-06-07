@@ -46,10 +46,12 @@ function Card({
 
   const handleModalTarefa = (open: boolean) => {
     setEditValue(titulo);
+    setDataValue(dataPrazo || "");
     setOpenModalTarefa(open);
   };
 
   const handleModalData = (open: boolean) => {
+    setEditValue(titulo);
     setDataValue(dataPrazo || "");
     setOpenModalData(open);
   };

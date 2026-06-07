@@ -96,7 +96,9 @@ export const useAppStore = create<AppStore>((set, get) => ({
     try {
       const atualizado = await grupoApi.update(grupoId, titulo);
       set((state) => ({
-        grupos: state.grupos.map((g) => (g.id === grupoId ? atualizado : g)),
+        grupos: state.grupos.map((g) =>
+          g.id === grupoId ? { ...g, ...atualizado, tarefas: g.tarefas } : g,
+        ),
       }));
     } catch (error) {
       console.error("Houve um erro ao atualizar grupo:", error);
